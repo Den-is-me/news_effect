@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import json
 import datetime
 
-def return_moscow_time(time):       # Возвращет время + этот год
+def return_moscow_time(time):       # add 2022 year to time
     time = datetime.datetime.strptime('2022 ' + time, '%Y %d %b at %I:%M %p')
     return str(time)
 
@@ -11,17 +11,17 @@ headers = {'date': 'Thu, 29Dec 2022 15:34:59 GMT',
            'accept-language': 'en-RU,en;q=0.9,ru-RU;q=0.8,ru;q=0.7,en-US;q=0.6',
             'content-type': 'application/json; ''charset=UTF-8',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 ' \
-                              'Safari/537.36'}
-URL = ('https://vk.com/wall-29534144?own=1&offset=40')
-count = 40
-project_data_list = []
+                              'Safari/537.36'}      # The main header is date format. It must be (GMT + 3) as IMOEX
+URL = ('https://vk.com/wall-29534144?own=1&offset=40')  
+count = 40      # Each page contains 20 posts, we need count for start at the right time
+project_data_list = []      # list for our attributes
 
-for _ in range(293):
+for _ in range(293):        # Number of iterations until January 01
     r = requests.get(url=URL, headers=headers)
     soup = BeautifulSoup(r.text, 'lxml')
-    post_cards = soup.find_all('div', class_='_post_content')
+    post_cards = soup.find_all('div', class_='_post_content')       # get html about news posts
 
-    for post in post_cards:
+    for post in post_cards:     # extract attributes
         try:
             post_text = post.find('div', class_='post_info').find('div', class_='wall_post_text').text
             if 'Ночные новости' in post_text or 'Дневные новости' in post_text or 'а' not in post_text:
@@ -50,7 +50,7 @@ for _ in range(293):
         project_data_list.append({'post_time': post_time, 'post_text': post_text.strip(),
                                   'post_reactions':
             post_reactions, 'post_share': post_share, 'post_views': post_views})
-    count += 20
+    count += 20     # follow next page
     URL = 'https://vk.com/wall-29534144?own=1' + '&offset=' + str(count)
     print(count)
 
