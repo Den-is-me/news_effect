@@ -47,7 +47,7 @@ import json
 import datetime
 ```
 Azure Databrics:
-```Spark SQL```
+```Spark SQL, Notebook, SQL dashboard```
 ___
 
 ### Extract data from a news source
@@ -82,7 +82,44 @@ IMOEX;60;20220103;15:00;3861.6400000;3863.4700000;3855.5700000;3856.7100000;3201
 
 ## Transform data for analyze
 
-For this and other tasks, I chose the free version of the databricks platform.
-First of all I created a cluster and uploaded [file.json](/create%20table%20news_lentach.png), [file.csv](/create%20table%20imoex_csv.png) as tables.
+For this and subsequent tasks, I chose the free version of the databricks platform.
+First of all I created a cluster and uploaded [news_lentach](/create%20table%20news_lentach.png), [imoex_csv](/create%20table%20imoex_csv.png) as tables.
 
-![cluster](/create-cluster.png)
+![cluster](/create%20cluster.png)
+
+Then, I created empty tables to fill with quality data
+```SQL
+CREATE TABLE IF NOT EXISTS imoex (
+  time TIMESTAMP,
+  open FLOAT,
+  high FLOAT,
+  low FLOAT,
+  close FLOAT,
+  volume BIGINT);
+  
+CREATE TABLE IF NOT EXISTS lentach (
+  time TIMESTAMP,
+  text STRING,
+  reaction INT,
+  post_share INT,
+  post_view INT);
+  ```
+And **INSERT** the necessary information
+
+```SQL
+INSERT INTO imoex
+SELECT CONCAT(LEFT(date, 4), '-', SUBSTRING(date, 5, 2), '-', RIGHT(date, 2), ' ', time),
+        open, high, low, close, vol
+FROM imoex_csv;
+
+INSERT INTO lentach
+SELECT LEFT(post_time, 13), post_text, 
+        REPLACE(post_reactions, ',', ''),
+        REPLACE(post_share, ',', ''),
+        CASE WHEN RIGHT(post_views, 1) = 'K' THEN CONCAT(REPLACE(LEFT(post_views, length(post_views) - 1), '.', ''), '000')
+             WHEN RIGHT(post_views, 1) = 'M' THEN CONCAT(REPLACE(LEFT(post_views, length(post_views) - 1), '.', ''), '000000')
+             ELSE REPLACE(post_views, '.', '') END
+FROM news_lentach;
+```
+
+
