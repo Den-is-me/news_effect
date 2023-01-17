@@ -83,4 +83,6 @@ IMOEX;60;20220103;15:00;3861.6400000;3863.4700000;3855.5700000;3856.7100000;3201
 ## Transform data for analyze
 
 For this and other tasks, I chose the free version of the databricks platform.
-First of all i created a cluster
+First of all I created a cluster and uploaded [file.json](/create%20table%20news_lentach.png), [file.csv](/create%20table%20imoex_csv.png) as tables.
+
+![cluster](/create-cluster.png)
