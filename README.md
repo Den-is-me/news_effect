@@ -51,6 +51,13 @@ ___
 ### Extract data from a news source
 As a database entity, I defined a news post.
 As attributes that need to be extract, I highlighted:
+
 time | text | likes | shares | number of views
 
-For extraction, I developed [this scraper in python](/Scraping_vk_lentach.py)
+![image](/lentach_post.png)
+
+For extraction, I developed [this scraper in python](/Scraping_vk_lentach.py). And as a result I get the [json file](/news_vk_lentach.json), which include 4980 rows like this:
+
+```json
+{post_time": "2023-01-15 17:30:00", "post_text": "В США выбрали 'Мисс Вселенную'...", "post_reactions": "4,228", "post_share": "703", "post_views": "528К"}
+```
