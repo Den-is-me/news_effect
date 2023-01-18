@@ -10,6 +10,7 @@
  - [Extract data from a news source](#extract-data-from-a-news-source)
  - [Extract stock market movement data](#extract-stock-market-movement-data)
  - [Transform data for analyze](#transform-data-for-analyze)
+ - [Identify news values and visualize the result](#identify-news-values-and-visualize-the-result)
  ___
 
 ### The Idea
@@ -121,5 +122,28 @@ SELECT LEFT(post_time, 13), post_text,
              ELSE REPLACE(post_views, '.', '') END
 FROM news_lentach;
 ```
+
+### Identify news values and visualize the result
+
+I decided to designate the coefficient of news "popularity" in a general format with the opening price:
+>coef_reaction = (likes + shares) / views * 100000
+
+And create a SQL Dashboard to show correlation with stock market movements.
+
+Databricks allows to complete this task with one simple ```SELECT```
+```SQL
+SELECT lentach.time,
+       IF(volume is NULL, 0, ROUND(volume / 10000000, 2)) AS volume,
+       ROUND((reaction + post_share) / post_view * 100000, 2) AS coef_reaction,
+       open
+FROM lentach LEFT JOIN imoex ON imoex.time = lentach.time
+WHERE lentach.time < '2022-03-15'   /*Selected period*/
+ORDER BY lentach.time DESC
+```
+
+
+
+
+
 
 
