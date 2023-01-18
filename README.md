@@ -146,7 +146,7 @@ ORDER BY lentach.time DESC
 
 The diagram for the period from 01/01/22 to 02/27/22 shows how increased reaction to news precedes the fall of the index and the increase in trading volumes. Coef_reaction is one of the values we can use to create a trend in the stock market.
 
-[ALL SQL](/SQL.html)
+[Databricks SQL](/SQL.ipynb)
 _____
 
 ### Conclusion
