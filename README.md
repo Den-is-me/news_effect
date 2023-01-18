@@ -11,6 +11,7 @@
  - [Extract stock market movement data](#extract-stock-market-movement-data)
  - [Transform data for analyze](#transform-data-for-analyze)
  - [Identify news values and visualize the result](#identify-news-values-and-visualize-the-result)
+ - [Conclusion](#conclusion)
  ___
 
 ### The Idea
@@ -84,15 +85,9 @@ IMOEX;60;20220103;15:00;3861.6400000;3863.4700000;3855.5700000;3856.7100000;3201
 ## Transform data for analyze
 
 For this and subsequent tasks, I chose the free version of the databricks platform.
-First of all I created a cluster.
+First of all I created a cluster and uploaded [news_lentach](/create%20table%20news_lentach.png), [imoex_csv](/create%20table%20imoex_csv.png) as tables.
 
 ![cluster](/create%20cluster.png)
-
-And uploaded 
-<summary>News_lentach</summary>
-![news_lentach](/create%20table%20news_lentach.png)
-
-[imoex_csv](/create%20table%20imoex_csv.png) as tables.
 
 Then, I created empty tables to fill with quality data
 ```SQL
@@ -154,6 +149,11 @@ The diagram for the period from 01/01/22 to 02/27/22 shows how increased reactio
 [ALL SQL](/SQL.html)
 _____
 
+### Conclusion
+
+This project was made for a portfolio, however this concept may have practical applications. News shows a strong influence on the change in the stock market, one of the options for upgrade the project is to analyze the streaming data of the reactions to the news. It will display the speed at which the news becomes popular before the market starts to react to it.
+
+Thank you for your attention.
 
 
 
