@@ -84,9 +84,15 @@ IMOEX;60;20220103;15:00;3861.6400000;3863.4700000;3855.5700000;3856.7100000;3201
 ## Transform data for analyze
 
 For this and subsequent tasks, I chose the free version of the databricks platform.
-First of all I created a cluster and uploaded [news_lentach](/create%20table%20news_lentach.png), [imoex_csv](/create%20table%20imoex_csv.png) as tables.
+First of all I created a cluster.
 
 ![cluster](/create%20cluster.png)
+
+And uploaded 
+<summary>News_lentach</summary>
+![news_lentach](/create%20table%20news_lentach.png)
+
+[imoex_csv](/create%20table%20imoex_csv.png) as tables.
 
 Then, I created empty tables to fill with quality data
 ```SQL
@@ -140,6 +146,15 @@ FROM lentach LEFT JOIN imoex ON imoex.time = lentach.time
 WHERE lentach.time < '2022-03-15'   /*Selected period*/
 ORDER BY lentach.time DESC
 ```
+
+![select](/newplot.png)
+
+The diagram for the period from 01/01/22 to 02/27/22 shows how increased reaction to news precedes the fall of the index and the increase in trading volumes. Coef_reaction is one of the values we can use to create a trend in the stock market.
+
+[ALL SQL](/SQL.html)
+_____
+
+
 
 
 
