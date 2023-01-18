@@ -58,7 +58,7 @@ As attributes that need to be extract, I highlighted:
 
 time | text | likes | shares | number of views
 
-![image](/lentach_post.png)
+![image](/img/lentach_post.png)
 
 For extraction, I developed [this scraper in python](/Scraping_vk_lentach.py). And as a result I have got the [file.json](/news_vk_lentach.json), which include 4980 rows like this:
 
@@ -85,9 +85,11 @@ IMOEX;60;20220103;15:00;3861.6400000;3863.4700000;3855.5700000;3856.7100000;3201
 ## Transform data for analyze
 
 For this and subsequent tasks, I chose the free version of the databricks platform.
-First of all I created a cluster and uploaded [news_lentach](/create%20table%20news_lentach.png), [imoex_csv](/create%20table%20imoex_csv.png) as tables.
+First of all I created a cluster and uploaded 
+[news_lentach](/img/create%20table%20news_lentach.png), 
+[imoex_csv](/img/create%20table%20imoex_csv.png) as tables.
 
-![cluster](/create%20cluster.png)
+![cluster](/img/create%20cluster.png)
 
 Then, I created empty tables to fill with quality data
 ```SQL
@@ -142,7 +144,7 @@ WHERE lentach.time < '2022-03-15'   /*Selected period*/
 ORDER BY lentach.time DESC
 ```
 
-![select](/newplot.png)
+![select](/img/newplot.png)
 
 The diagram for the period from 01/01/22 to 02/27/22 shows how increased reaction to news precedes the fall of the index and the increase in trading volumes. Coef_reaction is one of the values we can use to create a trend in the stock market.
 
