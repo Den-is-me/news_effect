@@ -33,7 +33,7 @@ headers = {'accept-language': 'en-RU,en;q=0.9,ru-RU;q=0.8,ru;q=0.7,en-US;q=0.6',
            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 '
                          'Safari/537.36'}
 URL = 'https://vk.com/wall-29534144?own=1&offset=40'
-count = 40  # Each page contains 20 posts, we need 'count' for start at the right time
+count = 40  # Each page contains 20 posts, we need 'count' for start at the correct posting time 3 days ago
 project_data_list = []  # list for our attributes
 post_time = str(datetime.datetime.now())
 
