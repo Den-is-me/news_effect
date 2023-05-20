@@ -51,7 +51,7 @@ import datetime
 Azure Databrics:
 ```Spark SQL, Notebook, SQL dashboard```
 ___
-
+## Realization
 ### Extract data from a news source
 As a database entity, I defined a news post.
 As attributes that need to be extract, I highlighted:
