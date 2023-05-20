@@ -4,7 +4,7 @@
  - [Idea](#the-idea)
  - [Tasks](#tasks)
  - [Research objects](#research-objects)
- - [Stack](#the-teach-stack)
+ - [Stack](#stack-used)
  
  ## Realization
  - [Extract data from a news source](#extract-data-from-a-news-source)
@@ -40,7 +40,7 @@ The data of economic indicators are in open source, and we can easily get them f
 
 For the period 01/01/2022 - 12/24/2022.
 
-### The teach stack
+### Stack used
 Python:
 ```Python
 import requests
