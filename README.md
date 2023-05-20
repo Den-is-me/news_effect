@@ -1,5 +1,5 @@
 # News effect
-**📈 Project on impact of news on the stock market**
+**📈 Impact of news on the stock market**
  ## Plan
  - [Idea](#the-idea)
  - [Tasks](#tasks)
